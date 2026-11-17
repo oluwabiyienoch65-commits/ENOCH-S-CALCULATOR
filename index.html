@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- saved from url=(0187)file:///C:/Users/USER/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/F0575E7B0363830D21724E225733604A1944D8E0/transfers/2026-46/Enoch_Calculator-16.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enoch's Calculator</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    padding: 20px; background: linear-gradient(135deg, #101827, #243b55);
+    font-family: Arial, sans-serif; color: #f8fafc;
+  }
+  .calculator {
+    width: min(100%, 360px); padding: 26px; border-radius: 22px;
+    background: #172334; box-shadow: 0 18px 50px #0006;
+  }
+  h1 { margin: 0 0 8px; font-size: 25px; text-align: center; }
+  .subtitle { margin: 0 0 22px; color: #b9c5d5; text-align: center; font-size: 13px; }
+  label { display: block; margin: 14px 0 7px; color: #dce6f2; font-size: 14px; }
+  input, select, button {
+    width: 100%; border: 0; border-radius: 11px; padding: 13px;
+    font-size: 16px;
+  }
+  input, select { background: #f8fafc; color: #172334; }
+  button {
+    margin-top: 18px; background: #38bdf8; color: #082032;
+    font-weight: 700; cursor: pointer;
+  }
+  button:active { transform: scale(.99); }
+  .result {
+    min-height: 55px; margin-top: 18px; padding: 15px;
+    border-radius: 11px; background: #0d1725; text-align: center;
+    overflow-wrap: anywhere; font-size: 18px;
+  }
+  .result small { display: block; color: #9fb0c5; font-size: 12px; margin-bottom: 5px; }
+</style>
+</head>
+<body>
+  <main class="calculator">
+    <h1>ENOCH'S CALCULATOR</h1>
+    <p class="subtitle">A simple calculator for everyday calculations</p>
+
+    <label for="first">First number</label>
+    <input id="first" type="number" step="any" placeholder="Enter first number">
+
+    <label for="second">Second number</label>
+    <input id="second" type="number" step="any" placeholder="Enter second number">
+
+    <label for="operation">Choose an operation</label>
+    <select id="operation">
+      <option value="add">Addition (+)</option>
+      <option value="subtract">Subtraction (−)</option>
+      <option value="multiply">Multiplication (×)</option>
+      <option value="divide">Division (÷)</option>
+    </select>
+
+    <button id="calculate">Calculate</button>
+    <div class="result" id="result" aria-live="polite"><small>ANSWER</small>30</div>
+  </main>
+<script>
+  const first = document.getElementById('first');
+  const second = document.getElementById('second');
+  const operation = document.getElementById('operation');
+  const result = document.getElementById('result');
+
+  document.getElementById('calculate').addEventListener('click', () => {
+    if (first.value.trim() === '' || second.value.trim() === '') {
+      result.innerHTML = '<small>NOTICE</small>Please enter both numbers.';
+      return;
+    }
+    const a = Number(first.value);
+    const b = Number(second.value);
+    let answer;
+    switch (operation.value) {
+      case 'add': answer = a + b; break;
+      case 'subtract': answer = a - b; break;
+      case 'multiply': answer = a * b; break;
+      case 'divide':
+        if (b === 0) {
+          result.innerHTML = '<small>ANSWER</small>Cannot divide by zero.';
+          return;
+        }
+        answer = a / b;
+        break;
+    }
+    result.innerHTML = '<small>ANSWER</small>' + answer;
+  });
+</script>
+
+
+</body></html>
